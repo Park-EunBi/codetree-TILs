@@ -8,7 +8,7 @@ board = [
 ]
 
 country = []
-cnt = 1
+cnt = 0
 dxs, dys = [0, 0, 1, -1], [1, -1, 0, 0]
 
 def canGo(x, y):
@@ -25,23 +25,36 @@ def dfs(x, y):
 
     # 방문처리 
     board[x][y] = 0
-    # cnt += 1
     # 인접 노드 방문
     for dx, dy in zip(dxs, dys):
         nx, ny = x + dx, y + dy
         if canGo(nx, ny):
             cnt += 1
             dfs(nx, ny)            
-            return True
-
-    return False
 
 for i in range(n):
     for j in range(n):
-        if dfs(i, j):
-            country.append(cnt)
-            cnt = 0
+        if canGo(i, j): # 방문 가능할 경우 
+            board[i][j] = 0 # 방문 처리 
+            cnt = 1 # 사람 수 초기화 
+            dfs(i, j) # 탐색 
+            country.append(cnt) # 주민 수 추가 
+
 
 print(len(country))
 for c in sorted(country):
     print(c)
+
+'''
+5
+1 0 1 0 1
+1 1 1 0 1
+0 1 0 1 1
+1 1 1 0 0
+1 1 0 1 1
+
+3
+2
+4
+11
+'''
