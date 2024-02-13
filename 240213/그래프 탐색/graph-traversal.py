@@ -10,12 +10,12 @@ for _ in range(m):
 cnt = 0
 def dfs(node):
     global cnt
-
+    visited[node] = 1
     for n in graph[node]:
         if not visited[n]:
-            visited[n] = 1
+            # visited[n] = 1
             cnt += 1
             dfs(n)
 
 dfs(1)
-print(cnt - 1)
+print(cnt)
