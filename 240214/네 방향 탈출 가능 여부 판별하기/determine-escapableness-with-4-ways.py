@@ -18,12 +18,14 @@ def canGo(x, y):
 
 def push(x, y):
     q.append((x, y))
+    board[x][y] = 0
 
 def bfs():
     dxs, dys = [0, 0, 1, -1], [1, -1, 0, 0]
     while q:
         x, y = q.popleft()
-        board[x][y] = 0 # 방문 처리 
+        # print(x, y)
+        # board[x][y] = 0 # 방문 처리 
         for dx, dy in zip(dxs, dys):
             nx, ny = x + dx, y + dy
             if canGo(nx, ny):
