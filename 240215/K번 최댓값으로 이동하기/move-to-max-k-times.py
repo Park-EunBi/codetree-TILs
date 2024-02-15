@@ -2,7 +2,6 @@
 from collections import deque
 n, k = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(n)]
-
 x, y = map(int, input().split())
 q = deque()
 
@@ -10,7 +9,6 @@ x -= 1
 y -= 1
 loc = [] 
 dxs, dys = [0, 0, 1, -1], [1, -1, 0, 0]
-# ret_x, ret_y = -1, -1
 
 def canGo(x, y, check):
     # 1. 범위 확인 
@@ -43,16 +41,23 @@ def bfs(check):
 
 
 for _ in range(k):
+    # 초기화
     visited = [[0 for _ in range(n)] for _ in range(n)]
     q.append((x, y))
     visited[x][y] = 1
     loc = []
+
+    # 탐색
     bfs(board[x][y])
-    # print(sorted(loc))
+
     # 위치 이동 - 최댓값 찾기 
     loc.sort(reverse = True, key = lambda x:(x[0], -x[1], -x[2]))
-    if not len(loc):
+
+    # 이동할 수 없을 경우   
+    if not len(loc): 
         break 
+
+    # 위치 변경
     x, y = (loc[0])[1], (loc[0])[2]
 
 
