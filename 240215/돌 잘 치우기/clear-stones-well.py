@@ -51,8 +51,9 @@ def bfs(remove_board):
         for dx, dy in zip(dxs, dys):
             nx, ny = x + dx, y + dy
             if canGo(nx, ny, remove_board):
-                push(nx, ny)
                 cnt += 1
+                push(nx, ny)
+                
 
 # 돌 치우기 
 def remove_stones(i):
@@ -70,10 +71,20 @@ for i in range(len(removes)):
     # 모든 시작점 돌기 
     for x, y in starts:
         visited = [[0 for _ in range(n)] for _ in range(n)]
-        # cnt = 1
-        cnt = 0
+        cnt = 1 # 필수 
         q.append((x, y))
+        visited[x][y] = 1 # 필수 
         bfs(remove_board)
         maximum = max(maximum, cnt)
 
 print(maximum)
+
+'''
+3 1 0
+1 1 1 
+1 1 1 
+1 1 0 
+3 3
+
+1
+'''
