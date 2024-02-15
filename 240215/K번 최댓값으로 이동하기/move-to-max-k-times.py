@@ -51,7 +51,17 @@ for _ in range(k):
     # print(sorted(loc))
     # 위치 이동 - 최댓값 찾기 
     loc.sort(reverse = True, key = lambda x:(x[0], -x[1], -x[2]))
+    if not len(loc):
+        break 
     x, y = (loc[0])[1], (loc[0])[2]
 
 
 print(x + 1, y + 1)
+
+'''
+1 1
+1
+1 1
+
+1 1
+'''
