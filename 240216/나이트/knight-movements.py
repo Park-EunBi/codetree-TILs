@@ -34,8 +34,15 @@ sx -= 1
 sy -= 1
 
 q.append((sx, sy))
-# board[sx][sy] = 1
+board[sx][sy] = 1
 bfs()
 
 # 이동불가시 -1 출력 
-print(board[ex-1][ey-1]) if board[ex-1][ey-1] else print(-1)
+print(board[ex-1][ey-1] - 1) if board[ex-1][ey-1] else print(-1)
+
+'''
+1
+1 1 1 1
+
+0
+'''
