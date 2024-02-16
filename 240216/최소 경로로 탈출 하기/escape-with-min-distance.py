@@ -31,11 +31,11 @@ def bfs():
             nx, ny = x + dx, y + dy
             if canGo(nx, ny):
                 push(nx, ny, board[x][y] + 1)
-
-
-# 이동 불가시 -1 
+    
 q.append((0, 0))
 board[0][0] = 0
+visited[0][0] = 1
 bfs()
 
-print(board[n-1][m-1]) if board[n-1][m-1] else print(-1)
+# 이동 불가시 -1 
+print(board[n-1][m-1]) if visited[n-1][m-1] else print(-1)
