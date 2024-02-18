@@ -1,5 +1,7 @@
 # 0: 이동 가능, 1: 벽, 2: 사람 있음 (이동 가능), 3: 비 피하는 공간 (목적지)
 from collections import deque 
+import sys 
+input = sys.stdin.readline
 
 n, h, m = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(n)]
