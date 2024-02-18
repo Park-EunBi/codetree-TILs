@@ -5,23 +5,20 @@ input = sys.stdin.readline
 
 n, h, m = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(n)]
-ret = [[float('inf') for _ in range(n)] for _ in range(n)]
 visited = [[0 for _ in range(n)] for _ in range(n)]
 dxs, dys = [0, 0, 1, -1], [1, -1, 0, 0]
 q = deque()
 
-people = [
+goals = [
     (i, j)
     for i in range(n)
     for j in range(n)
-    if board[i][j] == 2
+    if board[i][j] == 3
 ]
 
-goals = [
-        (i, j)
-    for i in range(n)
-    for j in range(n)
-    if board[i][j] == 3
+step = [                    
+    [0 for _ in range(n)]   
+    for _ in range(n)       
 ]
 
 def canGo(x, y):
@@ -37,12 +34,12 @@ def canGo(x, y):
 def push(x, y, s):
     # 1. 추가 
     q.append((x, y))
-    # 2. 방문 처리, 이동 거리 체크
-    visited[x][y] = s 
-    
+    # 2. 방문 처리
+    visited[x][y] = 1
+    # 3. 이동 거리 등록
+    step[x][y] = s
 
 def bfs():
-    global gx, gy, cnt
     while q:
         x, y = q.popleft()
 
@@ -54,7 +51,7 @@ def bfs():
         for dx, dy in zip(dxs, dys):
             nx, ny = x + dx, y + dy
             if canGo(nx, ny):
-                push(nx, ny, visited[x][y] + 1)
+                push(nx, ny, step[x][y] + 1)
 
 # sol_2: m개의 목적지를 시작으로 하는 bfs를 한 번 돌리면 된다 
 # 목적지 부터 모든 지점까지의 최소 값을 찾을 수 있다 
@@ -65,7 +62,6 @@ for x, y in goals:
 
 bfs()
 
-
 for i in range(n):
     for j in range(n):
         if board[i][j] != 2: # 사람이 서 있던 곳이 아니라면 
@@ -74,7 +70,7 @@ for i in range(n):
             if not visited[i][j]: # 방문한 적이 없다면 
                 print(-1, end = ' ') # 방문할 수 없는 것 
             else: # 방문 한 적 있다면 
-                print(visited[i][j], end = ' ') # 최단 거리 출력 
+                print(step[i][j], end = ' ') # 최단 거리 출력 
     print()
 
 
@@ -100,4 +96,21 @@ for r in ret:
 
 for r in ret:
     print(*r)
+'''
+
+'''
+5 10 10
+3 2 1 3 3 
+3 3 3 2 1 
+3 0 3 2 2 
+2 0 2 3 2 
+2 0 3 2 2
+
+0 1 0 0 0 
+0 0 0 1 0 
+0 0 0 1 2 
+1 0 1 0 1 
+2 0 0 1 2 
+# visited 배열에 이동거리까지 계산하면 틀림
+# step 배열을 사용하자 
 '''
