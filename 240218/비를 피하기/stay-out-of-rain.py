@@ -6,6 +6,7 @@ input = sys.stdin.readline
 n, h, m = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(n)]
 ret = [[float('inf') for _ in range(n)] for _ in range(n)]
+visited = [[0 for _ in range(n)] for _ in range(n)]
 dxs, dys = [0, 0, 1, -1], [1, -1, 0, 0]
 q = deque()
 
@@ -55,6 +56,31 @@ def bfs():
             if canGo(nx, ny):
                 push(nx, ny, visited[x][y] + 1)
 
+# sol_2: m개의 목적지를 시작으로 하는 bfs를 한 번 돌리면 된다 
+# 목적지 부터 모든 지점까지의 최소 값을 찾을 수 있다 
+
+# 모든 목적지를 큐에 넣는다 
+for x, y in goals:
+    push(x, y, 0)
+
+bfs()
+
+
+for i in range(n):
+    for j in range(n):
+        if board[i][j] != 2: # 사람이 서 있던 곳이 아니라면 
+            print(0, end = ' ')
+        else: # 사람이 서 있던 곳이라면 
+            if not visited[i][j]: # 방문한 적이 없다면 
+                print(-1, end = ' ') # 방문할 수 없는 것 
+            else: # 방문 한 적 있다면 
+                print(visited[i][j], end = ' ') # 최단 거리 출력 
+    print()
+
+
+'''
+# 시간 초과
+# sol_1: 모든 사람에 대해 모든 목적지의 최소 거리를 구한다 
 for px, py in people:
     for gx, gy in goals:
         visited = [[0 for _ in range(n)] for _ in range(n)]
@@ -74,3 +100,4 @@ for r in ret:
 
 for r in ret:
     print(*r)
+'''
