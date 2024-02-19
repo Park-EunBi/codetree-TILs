@@ -4,6 +4,8 @@ lines = [
     for _ in range(n)
 ]
 
+lines.sort()
+
 choice_list = []
 choice = []
 maximum = 0
@@ -34,3 +36,16 @@ for c in choice_list:
         maximum = max(maximum, len(c))
 
 print(maximum)
+
+'''
+7
+491 696
+500 967
+311 878
+53 720
+634 728
+380 570
+55 682
+
+2
+'''
