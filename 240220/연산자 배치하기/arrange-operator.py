@@ -3,7 +3,7 @@ nums = list(map(int, input().split()))
 ops = list(map(int, input().split())) # +, -, * 
 
 ans_min = float('inf')
-ans_max = -1
+ans_max = -float('inf')
 
 def calc():
     ans = nums[0]
@@ -37,3 +37,11 @@ def choose(num):
 
 choose(0)
 print(ans_min, ans_max)
+
+'''
+6
+3 3 5 1 3 1 
+0 5 0 
+
+-10 -10
+'''
