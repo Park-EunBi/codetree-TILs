@@ -4,12 +4,16 @@ nums = list(map(int, input().split()))
 ans = float('inf')
 
 def calc():
-    cal = 0
-    for num in nums:
-        if num not in choice:
-            cal += num 
+    cal_1 = 0
+    cal_2 = 0
     
-    return abs(sum(choice) - cal) 
+    for i in range(2 * n):
+        if i in choice:
+            cal_1 += nums[i]
+        else:
+            cal_2 += nums[i]
+
+    return abs(cal_1 - cal_2)
 
 
 choice = []
@@ -20,7 +24,7 @@ def choose(idx, num):
         return 
 
     for i in range(idx, 2* n):
-        choice.append(nums[i])       
+        choice.append(i)       
         choose(i + 1, num + 1)
         choice.pop()
 
