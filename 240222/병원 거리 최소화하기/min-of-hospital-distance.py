@@ -20,8 +20,6 @@ def calc(x, y):
     for k in choice:
         gx, gy = hospital[k]
         temp = min(temp, abs(x - gx) + abs(y - gy))
-
-    # print(abs(x - gx) + abs(y - gy))
     return temp 
 
 ans = float('inf')
@@ -39,9 +37,7 @@ choice = []
 def choose(idx, num):
     global ans
     if num == m:
-        # print(choice)
         # 2. 병원 거리의 합 구하기 
-        # print(make_sum())
         ans = min(ans, make_sum())
         
         return 
