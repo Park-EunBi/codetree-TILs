@@ -35,10 +35,22 @@ def calc(k, x, y):
 
 
 # 0. k 설정
-for k in range(n):
+for k in range(n + 1): # n으로 설정하면 n이 짝수일 때 모든 부분을 커버할 수 없음
     # 1. 중심점 잡기 
     for i in range(n):
         for j in range(n):
             ans = max(ans, calc(k, i, j))
 
 print(ans)
+
+'''
+6 10
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+
+36
+'''
