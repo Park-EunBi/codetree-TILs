@@ -33,7 +33,11 @@ def winds():
 # 값 갱신
 def calc():
     # copy_board 내용으로 값을 계산하고 값을 board에 저장 
-    copy_board = deepcopy(board)
+    # copy_board = deepcopy(board)
+    copy_board = [[0 for _ in range(m)] for _ in range(n)]
+    for i in range(n):
+        for j in range(m):
+            copy_board[i][j] = board[i][j]
 
     # 박스 안 탐색 
     for x in range(r1, r2 + 1):
