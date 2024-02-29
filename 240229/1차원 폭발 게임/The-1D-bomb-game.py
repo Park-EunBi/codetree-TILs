@@ -33,7 +33,8 @@ def check():
                 bomb(start_idx, end_idx)
             start_idx, end_idx = i + 1, i + 1
 
-    if start_idx != end_idx:
+    # if start_idx != end_idx:
+    if end_idx - start_idx + 1 >= m:
         bomb(start_idx, end_idx)
 
 before = len(nums)
@@ -57,3 +58,114 @@ while not end(before, after):
 print(len(nums))
 for n in nums:
     print(n)
+
+
+'''
+# test case
+76 25
+17
+45
+86
+81
+81
+81
+81
+81
+81
+81
+35
+35
+35
+35
+35
+35
+35
+35
+35
+35
+35
+35
+35
+35
+35
+35
+35
+35
+35
+35
+35
+35
+35
+35
+35
+82
+82
+82
+82
+82
+82
+82
+82
+82
+82
+82
+82
+82
+82
+82
+82
+29
+29
+29
+29
+29
+29
+29
+29
+29
+29
+29
+29
+29
+29
+29
+29
+29
+29
+29
+29
+29
+29
+29
+29
+29
+
+# ans 
+26
+17
+45
+86
+81
+81
+81
+81
+81
+81
+81
+82
+82
+82
+82
+82
+82
+82
+82
+82
+82
+82
+82
+82
+82
+82
+82
+'''
