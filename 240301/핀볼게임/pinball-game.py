@@ -25,7 +25,7 @@ def in_range(x, y):
         return False 
     return True 
 
-def move(x, y, d):   
+def move(x, y, d):     
     # /
     if board[x][y] == 1:
         d = one_dir[d]
@@ -40,19 +40,31 @@ def simulation(x, y, d):
     global ans
     visited = [[0 for _ in range(n)] for _ in range(n)]
     time = 1
+
     while in_range(x, y) and not visited[x][y]:
-        visited[x][y] = 1
         x, y, d = move(x, y, d)
         time += 1
+
     return time 
+
 
 # 시작 지점 설정 1. - 행 (i: 0, n-1)
 for j in range(n):
     ans = max(ans, simulation(0, j, 1))
     ans = max(ans, simulation(n-1, j, 3))
+
 # 시작 지점 설정 2. - 열 (j: 0, n-1)
 for i in range(n):
     ans = max(ans, simulation(i, 0, 0))
     ans = max(ans, simulation(i, n - 1, 2))
 
 print(ans)
+
+'''
+3
+0 1 1 
+0 0 0 
+2 2 1
+
+8
+'''
