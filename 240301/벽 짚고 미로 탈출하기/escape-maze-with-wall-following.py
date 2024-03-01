@@ -27,12 +27,14 @@ def simulaton(x, y):
         return x, y
     # 2. 이동은 가능하나 격자 밖이라면 - 탈출
     elif not in_range(nx, ny):
+        cnt = 0
         time += 1
         x, y = nx, ny
         return x, y
 
     # 3. 이동 가능하고 
     elif in_range(nx, ny) and board[nx][ny] == '.':
+        cnt = 0
         # 3-1. 오른쪽(시계방향)에 짚을 벽이 있다면  
         rd = (direction + 1) % 4  # right direction
         rx, ry = nx + dxs[rd], ny + dys[rd]
