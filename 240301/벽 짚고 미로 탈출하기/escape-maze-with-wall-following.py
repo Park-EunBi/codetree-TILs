@@ -58,7 +58,7 @@ def simulaton(x, y):
 while in_range(x, y):
     x, y = simulaton(x, y)
     # 길이 없을 경우 
-    if time > n * n + n:
+    if time > n * n:
         time = -1
         break 
 
