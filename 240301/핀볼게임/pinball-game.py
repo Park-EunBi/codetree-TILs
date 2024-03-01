@@ -38,10 +38,9 @@ def move(x, y, d):
 
 def simulation(x, y, d):
     global ans
-    visited = [[0 for _ in range(n)] for _ in range(n)]
     time = 1
 
-    while in_range(x, y) and not visited[x][y]:
+    while in_range(x, y):
         x, y, d = move(x, y, d)
         time += 1
 
