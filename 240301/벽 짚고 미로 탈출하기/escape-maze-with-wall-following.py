@@ -8,6 +8,7 @@ y -= 1
 dxs, dys = [0, 1, 0, -1], [1, 0, -1, 0] # 우 하 좌 상 (시계 방향)
 time = 0 
 direction = 0 # 우
+cnt = 0 # 사방 이동 확인 
 
 def in_range(x, y):
     if x < 0 or x >= n or y < 0 or y >= n:
@@ -15,14 +16,15 @@ def in_range(x, y):
     return True
 
 def simulaton(x, y):
-    global direction, time
+    global direction, time, cnt
     nx, ny = x + dxs[direction], y + dys[direction]
 
     # 1. 현재 방향으로 이동 불가
     if in_range(nx, ny) and board[nx][ny] == '#':
         # 반시계 방향으로 회전 
         direction = (direction -1) % 4
-
+        cnt += 1
+        return x, y
     # 2. 이동은 가능하나 격자 밖이라면 - 탈출
     elif not in_range(nx, ny):
         time += 1
@@ -58,8 +60,18 @@ def simulaton(x, y):
 while in_range(x, y):
     x, y = simulaton(x, y)
     # 길이 없을 경우 
-    if time > n * n:
+    if time > n * n or cnt > 4:
         time = -1
         break 
 
 print(time)
+
+'''
+3
+2 2
+.#.
+#.#
+.#.
+
+-1
+'''
