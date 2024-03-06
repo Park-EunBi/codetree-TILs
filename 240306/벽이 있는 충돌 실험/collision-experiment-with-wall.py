@@ -51,13 +51,19 @@ def simulation():
     for b in balls:
         remove(b[0], b[1], b[2], temp_balls)
     
-    balls = temp_balls
 
-    # 3. 충돌된 공 제거 - count
-    for i in range(n):
-        for j in range(n):
-            if count[i][j] > 1:
-                count[i][j] = 0
+    for b in balls:
+        if count[b[0]][b[1]] > 1:
+            count[b[0]][b[1]] = 0
+        
+
+    # # 3. 충돌된 공 제거 - count
+    # for i in range(n):
+    #     for j in range(n):
+    #         if count[i][j] > 1:
+    #             count[i][j] = 0
+
+    balls = temp_balls
 
 for _ in range(t):
     n, m = map(int, input().split())
@@ -71,6 +77,8 @@ for _ in range(t):
 
         count[b[0]][b[1]] = 1
 
+    # 2 * n 번 반복한 이후에는 충돌이 일어나지 않는다 
+        # 가로, 세로의 길이가 n이고, 방향이 뒤집히기만 해서
     for i in range(2 * n):
         simulation()
 
