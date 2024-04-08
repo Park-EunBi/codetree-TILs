@@ -13,6 +13,8 @@ dxs, dys = [-1, 1, 0, 0], [0, 0, -1, 1]
 ans = 0
 
 
+
+
 def in_range(x, y):
     if x < 0 or x >= n or y < 0 or y >= n:
         return False
@@ -40,6 +42,7 @@ def move():
         else:
             temp.append((x, y))
 
+
     # 출구 탈출
     people = temp[:]
     temp = []
@@ -59,6 +62,7 @@ def find_box():
     for x, y in people:
         length.append(max(abs(gx - x), abs(gy - y)))
 
+    length.sort()
     length = length[0]
 
     # 완탐으로 사각형 찾기 (사람과 목적지를 포함한 길이가 length인 사각형)
@@ -76,13 +80,15 @@ def find_box():
 def turn(x, y, length):
     global people, goal
 
+
     # 1. 사람(-1), 목적지(-100) 복사
     for px, py in people:
-        board[px][py] = -1
+        board[px][py] += -1
     board[goal[0]][goal[1]] = -100
 
     # 0. 동시 회전
     temp = [b[:] for b in board]
+
 
     # 2. 시계방향 90도 회전
     for i in range(0, length + 1):
@@ -104,7 +110,8 @@ def turn(x, y, length):
                 goal = [i, j]
                 board[i][j] = 0
             elif board[i][j] < 0:
-                people.append([i, j])
+                for _ in range(-board[i][j]):
+                    people.append([i, j])
                 board[i][j] = 0
 
 
@@ -132,3 +139,24 @@ for i in range(k):
 
 print(ans)
 print(goal[0] + 1, goal[1] + 1)
+
+'''
+4 9 7
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 7
+3 3
+2 3
+4 2
+2 1
+1 4
+4 2
+1 2
+1 4
+3 1
+1 3
+
+18
+2 2
+'''
