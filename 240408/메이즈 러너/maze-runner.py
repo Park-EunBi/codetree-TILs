@@ -11,7 +11,9 @@ goal = [goal[0] - 1, goal[1] - 1]
 
 dxs, dys = [-1, 1, 0, 0], [0, 0, -1, 1]
 ans = 0
-
+# for x, y in people:
+#     board[x][y] += -1
+# board[goal[0]][goal[1]] = -100
 
 
 
@@ -42,7 +44,6 @@ def move():
         else:
             temp.append((x, y))
 
-
     # 출구 탈출
     people = temp[:]
     temp = []
@@ -66,6 +67,7 @@ def find_box():
     length = length[0]
 
     # 완탐으로 사각형 찾기 (사람과 목적지를 포함한 길이가 length인 사각형)
+    boxes = []
     for x, y in people:
         for i in range(n - length):
             for j in range(n - length):
@@ -73,7 +75,11 @@ def find_box():
                 if i <= x <= i + length and j <= y <= j + length:
                     # 목적지 포함 확인
                     if i <= gx <= i + length and j <= gy <= j + length:
-                        return i, j, length
+                        boxes.append((i, j))
+
+    boxes.sort(key= lambda x : (x[0], x[1]))
+
+    return boxes[0][0], boxes[0][1], length
 
 
 # 미로 회전, 내구도 감소
@@ -101,6 +107,7 @@ def turn(x, y, length):
 
 
 
+
     # 사람, 목적지 이동 처리
     people = []
 
@@ -120,6 +127,7 @@ def rotate():
     # 1. 가장 작은 정사각형 찾기
     x, y, length = find_box()
 
+
     # 2. 시계방향 90도 회전
     turn(x, y, length)
 
@@ -127,6 +135,7 @@ def rotate():
 
 # main
 for i in range(k):
+
     # 1. 이동
     people = move()
 
@@ -159,4 +168,23 @@ print(goal[0] + 1, goal[1] + 1)
 
 18
 2 2
+'''
+
+'''
+5 5 5
+5 0 0 0 4
+9 0 0 8 0
+0 7 0 0 8
+8 8 0 1 8
+0 6 0 0 1
+5 1
+4 3
+3 4
+1 2
+4 3
+2 5
+
+
+10
+1 3
 '''
